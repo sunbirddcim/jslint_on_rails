@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe 'jslint.js' do
   before :all do
+    FakeFS::FileSystem.clone(File.dirname(JSLint::DEFAULT_CONFIG_FILE))
     File.open(JSLint::DEFAULT_CONFIG_FILE, "w") { |f| f.write "color: red\nsize: 5\nshape: circle\n" }
     File.open("custom_config.yml", "w") { |f| f.write "color: blue\nsize: 7\nborder: 2\n" }
     File.open("other_config.yml", "w") { |f| f.write "color: green\nborder: 0\nshape: square" }
