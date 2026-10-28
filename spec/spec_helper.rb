@@ -1,5 +1,5 @@
 require 'jslint'
-require 'pp' # fix for fakefs/pp incompatibility in Ruby 1.9.3
+require 'pp'
 require 'fakefs'
 
 module Rails
@@ -16,6 +16,7 @@ end
 module SpecHelper
   def create_file(filename, contents)
     contents = YAML.dump(contents) + "\n" unless contents.is_a?(String)
+    FakeFS::FileSystem.clone(File.dirname(filename))
     File.open(filename, "w") { |f| f.print(contents) }
   end
 

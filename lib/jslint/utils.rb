@@ -42,7 +42,7 @@ module JSLint
       end
 
       def load_config_file(file_name)
-        if file_name && File.exists?(file_name) && File.file?(file_name) && File.readable?(file_name)
+        if file_name && File.exist?(file_name) && File.file?(file_name) && File.readable?(file_name)
           YAML.load_file(file_name)
         else
           {}
@@ -70,7 +70,7 @@ module JSLint
 
       def copy_config_file
         display "Creating example JSLint config file in #{File.expand_path(JSLint.config_path)}... "
-        if File.exists?(JSLint.config_path)
+        if File.exist?(JSLint.config_path)
           log "\n\nWarning: config file exists, so it won't be overwritten. " +
               "You can copy it manually from the jslint_on_rails directory if you want to reset it."
         else
